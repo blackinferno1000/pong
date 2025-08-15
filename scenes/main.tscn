@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://8vxh1ruhgbcd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sgp6g"]
+size = Vector2(10, 650)
+
+[node name="main" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Divider" type="Line2D" parent="Camera2D"]
+points = PackedVector2Array(0, -320, 0, 320)
+closed = true
+default_color = Color(0.7476796, 0.7476796, 0.7476796, 0.58431375)
+joint_mode = 1
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Camera2D/Divider"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/Divider/StaticBody2D"]
+shape = SubResource("RectangleShape2D_sgp6g")
