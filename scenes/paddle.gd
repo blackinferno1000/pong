@@ -1,0 +1,30 @@
+extends CharacterBody2D
+
+#fields
+@export var SPEED = 350
+@export_enum("Player 1", "Player 2") var player: int
+var screen_size
+
+#functions
+func _ready():
+	screen_size = get_viewport_rect().size
+func _physics_process(delta):
+#	player 1 movement
+	if(player == 0):
+		if(Input.is_action_pressed("p1_up")):
+			#velocity.y -= SPEED * delta
+			position.y -= SPEED * delta
+		if(Input.is_action_pressed("p1_down")):
+			#velocity.y += SPEED * delta
+			position.y += SPEED * delta
+	position = position.clamp(Vector2.ZERO, screen_size)
+	
+#	player 2 movement
+	if(player == 1):
+		if(Input.is_action_pressed("p2_up")):
+			#velocity.y -= SPEED * delta
+			position.y -= SPEED * delta
+		if(Input.is_action_pressed("p2_down")):
+			#velocity.y += SPEED * delta
+			position.y += SPEED * delta
+	position = position.clamp(Vector2.ZERO, screen_size)
