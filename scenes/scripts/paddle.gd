@@ -7,26 +7,24 @@ var screen_size
 
 #functions
 func _ready():
+# 	get and adjust screen size
 	screen_size = get_viewport_rect().size
 	screen_size = Vector2(screen_size[0], screen_size[1] - 125)
-	print(screen_size)
+	#print(screen_size)
+	
 func _physics_process(delta):
 #	player 1 movement
 	if(player == 0):
 		if(Input.is_action_pressed("p1_up")):
-			#velocity.y -= SPEED * delta
 			position.y -= SPEED * delta
 		if(Input.is_action_pressed("p1_down")):
-			#velocity.y += SPEED * delta
 			position.y += SPEED * delta
-	position = position.clamp(Vector2.ZERO, screen_size)
 	
 #	player 2 movement
 	if(player == 1):
 		if(Input.is_action_pressed("p2_up")):
-			#velocity.y -= SPEED * delta
 			position.y -= SPEED * delta
 		if(Input.is_action_pressed("p2_down")):
-			#velocity.y += SPEED * delta
 			position.y += SPEED * delta
+#	position clamp
 	position = position.clamp(Vector2(0,125), screen_size)

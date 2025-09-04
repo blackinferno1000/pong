@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://eaolty4igfxy"]
+
+[ext_resource type="FontFile" uid="uid://5xs0ixkidtd1" path="res://assets/Audiowide-Regular.ttf" id="1_aqins"]
+
+[node name="Label" type="RichTextLabel"]
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_fonts/normal_font = ExtResource("1_aqins")
+theme_override_font_sizes/normal_font_size = 32
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
