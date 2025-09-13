@@ -3,35 +3,20 @@ extends Node2D
 #fields
 @onready var player_1 = %"Player 1"
 @onready var player_2 = %"Player 2"
-var ball_node = preload("res://scenes/objects/ball.tscn")
 var label_node = preload("res://scenes/user_interface/label.tscn")
-var ball
 var screen_size
-@export_enum("Active", "Score", "Game Over") var game_state: int
-@export var p1_score:int = 0
-@export var p2_score:int = 0
+@export_enum("Active", "Pause", "Game Over") var game_state: int
+@export var score:Array[int] = [0,0]
 var p1_score_label
 var p2_score_label
 @export var speed:int = 300
-var point
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-#	instantiate ball at center
-	ball = instance(ball_node,Vector2(575.0,312.0))
+#	instantiate score
 	p1_score_label = instance(label_node, Vector2(520.0,595.0))
-	p1_score_label.text = str(p1_score)
 	p2_score_label = instance(label_node, Vector2(590.0,595.0))
-	p2_score_label.text = str(p2_score)
-	print(ball)
-	print(ball.position)
-# 	get and adjust screen size
-	screen_size = get_viewport_rect().size
-	screen_size = Vector2(screen_size[0], screen_size[1] - 125)
-#	get intial ball move position
-	point = randf_range(screen_size[0],screen_size[1])
-	print(point)
 
 func instance(inst, pos: Vector2):
 	var instance = inst.instantiate()
@@ -46,10 +31,19 @@ func _input(event):
 		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
-#	move ball
-	#ball.position = ball.position.move_toward(Vector2(point,screen_size[1]), speed * delta)
-	pass
-	
-#	position clamp
-	#ball.position = position.clamp(Vector2(0,125), screen_size)
-	
+	p1_score_label.text = str(score[0])
+	p2_score_label.text = str(score[1])
+
+func _on_area_2d_area_entered(area):
+	print("collided!")
+
+func _on_timer_timeout():
+	$Ball.new_ball()
+
+func _on_p_1_goal_body_entered(body):
+	score[1] += 1
+	$Timer.start()
+
+func _on_p_2_goal_body_entered(body):
+	score[0] += 1
+	$Timer.start()

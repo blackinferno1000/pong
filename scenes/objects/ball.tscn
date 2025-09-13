@@ -1,11 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://dfbkm86lw6pun"]
+[gd_scene load_steps=4 format=3 uid="uid://dfbkm86lw6pun"]
 
+[ext_resource type="Script" uid="uid://n27owa7dvd6f" path="res://scenes/scripts/ball.gd" id="1_12lam"]
 [ext_resource type="Texture2D" uid="uid://f4hkpvvxf36g" path="res://assets/ball.png" id="1_itkb2"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_12lam"]
 radius = 25.0
 
 [node name="Ball" type="CharacterBody2D"]
+collision_mask = 3
+script = ExtResource("1_12lam")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(0.5882353, 0.63529414, 0.7019608, 1)
