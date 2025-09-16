@@ -5,7 +5,7 @@ extends Node2D
 @onready var player_2 = %"Player 2"
 var label_node = preload("res://scenes/user_interface/label.tscn")
 var screen_size
-@export_enum("Active", "Pause", "Game Over") var game_state: int
+@export_enum("Start", "Active", "Pause", "Game Over") var game_state: int = 0
 @export var score:Array[int] = [0,0]
 var p1_score_label
 var p2_score_label
