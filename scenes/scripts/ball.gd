@@ -11,8 +11,10 @@ const CLAMP_HEIGHT: int = 95
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	#get window size
 	win_size = get_viewport_rect().size
-	
+
+#handles new ball position and direction
 func new_ball():
 	#random position
 	position.x = win_size.x/2
@@ -20,13 +22,15 @@ func new_ball():
 	#random direction and starting speed
 	speed = START_SPEED
 	dir = random_direction()
-	
+
+#gets random direction for ball
 func random_direction():
 	var new_dir := Vector2()
 	new_dir.x = [1, -1].pick_random()
 	new_dir.y = randf_range(1, 1)
 	return new_dir.normalized()
 	
+#handles direction from bounces
 func new_direction(collider):
 	#get ball and colliding paddle distance
 	var ball_y = position.y
@@ -48,6 +52,7 @@ func new_direction(collider):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
+	#ball movement and collisions
 	var collision = move_and_collide(dir * speed * delta)
 	var collider
 	if collision:
